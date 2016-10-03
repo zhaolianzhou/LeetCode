@@ -6,7 +6,7 @@
  * @author Zhaolian
  *
  */
-public class mergeTwoSortedLists {
+public class mergeTwoSortedLists_21 {
 	public class ListNode{
 		int val;
 		ListNode next;
