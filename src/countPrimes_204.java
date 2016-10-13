@@ -1,4 +1,9 @@
-
+/**
+ * Count the number of prime numbers less than a non-negative number, n.
+ * Use the Sieve of Eratosthenes
+ * @author Zhaolian
+ *
+ */
 public class countPrimes_204 {
 	public static int countPrimes(int n){
 		int result = 0;
