@@ -22,7 +22,6 @@ public class repeatedSubstring_459 {
 			if(len%i==0){
 				int repeatTime = len/i;
 				String sub  = str.substring(0, i);
-				str.s
 				int j = 0;
 				for(j = 1; j < repeatTime; j++){
 					if(!sub.equals(str.substring(j*i, i*(j+1))))
