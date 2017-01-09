@@ -11,8 +11,6 @@ public class numbercom {
 			else
 				result+='1';
 		}
-		System.out.println(numStr);
-		System.out.println(result);
 		return Integer.parseInt(result,2);
 	}
 	public static void main(String[] args) {

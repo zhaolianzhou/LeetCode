@@ -5,8 +5,6 @@ public class hammingDistance_461 {
         String xs=Integer.toBinaryString(x);
         String ys=Integer.toBinaryString(y);
         int result=0;
-        int xl=xs.length();
-        int yl=ys.length();
         for(int i=xs.length();i<32;i++){
         	xs='0'+xs;
         }
