@@ -1,0 +1,11 @@
+public class RunningSumOf1dArray_1480 {
+    public int[] runningSum(int[] nums) {
+        if (nums == null || nums.length == 0)
+            return nums;
+        int length = nums.length;
+        for (int i = 1; i < length; i++) {
+            nums[i] = nums[i]+ nums[i-1];
+        }
+        return nums;
+    }
+}
