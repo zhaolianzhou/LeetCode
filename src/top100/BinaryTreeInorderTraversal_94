@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class BinaryTreeInorderTraversal_94 {
+     public class TreeNode {
+         int val;
+         TreeNode left;
+         TreeNode right;
+         TreeNode() {}
+         TreeNode(int val) { this.val = val; }
+         TreeNode(int val, TreeNode left, TreeNode right) {
+             this.val = val;
+             this.left = left;
+             this.right = right;
+         }
+     }
+    public List<Integer> inorderTraversal(TreeNode root) {
+         List<Integer> result = new ArrayList<>();
+         inorderTravelsalHelper(root, result);
+         return result;
+    }
+
+    private List<Integer> inorderTravelsalHelper(TreeNode root, List<Integer> temp) {
+         if (root == null) {
+             return temp;
+         } else {
+             temp = inorderTravelsalHelper(root.left, temp);
+             temp.add(root.val);
+             temp = inorderTravelsalHelper(root.right, temp);
+             return temp;
+         }
+    }
+}
