@@ -1,0 +1,26 @@
+public class mergeSortedArray_88 {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        if(m==0) {
+            for (int i = 0; i < n; i++) {
+                nums1[i] = nums2[i];
+            }
+        }
+        if(n>0&&m>0) {
+            int i = m-1, j = n-1;
+            for (int tail = m+n-1; tail > i && i >=0 &&j>=0; --tail) {
+                if (nums1[i] > nums2[j]) {
+                    nums1[tail] = nums1[i];
+                    --i;
+                } else {
+                    nums1[tail] = nums2[j];
+                    --j;
+                }
+            }
+            if(i<0) {
+                for(;j>=0; j--) {
+                    nums1[j] = nums2[j];
+                }
+            }
+        }
+    }
+}
