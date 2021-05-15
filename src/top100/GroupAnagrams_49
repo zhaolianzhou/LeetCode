@@ -1,0 +1,27 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
+public class GroupAnagrams_49 {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String, List<String>> helper = new HashMap<>();
+        for (int i= strs.length-1; i >= 0; i--) {
+            String sortedStr = getSortedChars(strs[i]);
+            if (helper.containsKey(sortedStr)) {
+                helper.get(sortedStr).add(strs[i]);
+            } else {
+                List<String> sameCharSetList = new ArrayList<>();
+                sameCharSetList.add(strs[i]);
+                helper.put(sortedStr, sameCharSetList);
+            }
+        }
+        return new ArrayList<>(helper.values());
+    }
+
+    private String getSortedChars(String initStr) {
+        char[] chars = initStr.toCharArray();
+        Arrays.sort(chars);
+        return new String(chars);
+    }
+}
