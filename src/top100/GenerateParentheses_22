@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+public class GenerateParentheses_22 {
+    List<String> result = new ArrayList<>();
+
+    public  List<String> generateParenthesis(int n) {
+        Stack<String> leftParen = new Stack<>();
+        Stack<String> rightParen = new Stack<>();
+
+        for (int i = 0; i < n; i++) {
+            leftParen.push("(");
+            rightParen.push(")");
+        }
+        helperFunction(leftParen, rightParen,"");
+        return result;
+    }
+
+    private void helperFunction(Stack<String> leftParen, Stack<String> rightParen, String initStr) {
+        if (leftParen.isEmpty() && rightParen.isEmpty()) {
+            result.add(initStr);
+            return;
+        }
+        if (leftParen.size() > 0) {
+                String initStr1 = initStr + leftParen.peek();
+                Stack<String> left1 = (Stack<String>) leftParen.clone();
+                left1.pop();
+                helperFunction(left1, rightParen, initStr1);
+        }
+        if (leftParen.size() < rightParen.size()){
+            String initStr2 = initStr + rightParen.peek();
+            Stack<String> right1 = (Stack<String>) rightParen.clone();
+            right1.pop();
+            helperFunction(leftParen, right1, initStr2);
+        }
+    }
+
+    public static void main(String[] args) {
+        GenerateParentheses_22 classInstance = new GenerateParentheses_22();
+        List<String> result = classInstance.generateParenthesis(3);
+        System.out.printf(result.toString());
+    }
+}
