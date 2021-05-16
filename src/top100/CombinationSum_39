@@ -1,0 +1,40 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class CombinationSum_39 {
+    Set<List<Integer>> result = new HashSet<>();
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<Integer> currentList = new ArrayList<>();
+        int currentResult = 0;
+        helperFunction(candidates, target, currentResult, currentList);
+        return new ArrayList<>(result);
+    }
+
+    public void helperFunction(int[] candidates, int target, int currentResult, List<Integer> currentList) {
+        if (currentResult == target) {
+            Collections.sort(currentList);
+            result.add(currentList);
+            return;
+        }
+        if (currentResult > target)
+            return;
+
+        for (int i = 0; i < candidates.length; i++) {
+            List<Integer> newCurrentList = new ArrayList<>(currentList);
+            newCurrentList.add(candidates[i]);
+            helperFunction(candidates, target, currentResult + candidates[i], newCurrentList);
+        }
+    }
+
+
+    public static void main(String[] args) {
+        CombinationSum_39 classInstance = new CombinationSum_39();
+        int[] candidates = new int[]{2,3,6, 7};
+        int target = 7;
+        List<List<Integer>> result = classInstance.combinationSum(candidates, target);
+        System.out.printf(result.toString());
+    }
+}
