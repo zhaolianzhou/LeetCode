@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class MergeIntervals_56 {
+    public int[][] merge(int[][] intervals) {
+        List<int[]> tempResult = new ArrayList<>();
+        if (intervals==null || intervals.length == 1)
+            return intervals;
+
+        for (int i = 0; i < intervals.length-1; i++) {
+            int[] currSmall = intervals[i];
+            for(int j = i+1; j < intervals.length; j++) {
+                int[] currItem = intervals[j];
+                if (currSmall[0] > currItem[0]) {
+                    intervals[i] = intervals[j];
+                    intervals[j] = currSmall;
+                    currSmall = currItem;
+                }
+            }
+        }
+
+        int[] currentHead = intervals[0];
+        for(int i = 1; i < intervals.length; i++) {
+            if (currentHead[1] >= intervals[i][0]) {
+                currentHead = new int[]{currentHead[0], Math.max(currentHead[1], intervals[i][1])};
+            } else {
+                tempResult.add(currentHead);
+                currentHead = intervals[i];
+            }
+        }
+        tempResult.add(currentHead);
+        int[][] result = new int[tempResult.size()][2];
+        return tempResult.toArray(result);
+    }
+
+    public static void main(String[] args) {
+        MergeIntervals_56 instance = new MergeIntervals_56();
+        int[][] intervals = {{1,3},{2,6},{8,10},{15,18}};
+        int[][] result = instance.merge(intervals);
+    }
+}
